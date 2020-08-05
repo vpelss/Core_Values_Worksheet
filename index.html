@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta name="description" content="Core Values Excercise">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Core Values Excercise</title>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+ .inline{
+ display: inline-block;  
+ }
+  </style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td>
+<div class='inline'>Core Value:</div><div id='core_value_word' class='inline'>Core Value</div> 
+<br>
+<div class='inline'>Definition:</div> <div id='core_value_definition' class='inline'>Definition</div> 
+<br>
+<div class='inline'>Status:</div> <div id='core_value_ynm' class='inline'>Maybe</div> 
+<br><br>
+<a class="ui-button ui-widget ui-corner-all" onclick="Set_Core_Value('yes');">Yes</a> 
+<a class="ui-button ui-widget ui-corner-all" onclick="Set_Core_Value('no');">No</a> 
+<a class="ui-button ui-widget ui-corner-all" onclick="Set_Core_Value('maybe');">Maybe</a>
+    </td>
+    <td>
+<div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('yes');">
+  <input type="radio" id="YesList" name="filter">
+  <label for="YesList">Yes List </label>(<div id='count_yes' class='inline'></div>)<br>
+</div>
+<br><br>  
+<div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('no');">
+  <input type="radio" id="NoList" name="filter">
+  <label for="NoList">No List </label>(<div id='count_no' class='inline'></div>)<br>
+</div>
+<br><br> 
+<div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('maybe');">
+  <input type="radio" id="MaybeList" name="filter">
+  <label for="MaybeList">Maybe List </label>(<div id='count_maybe' class='inline'></div>)<br>
+</div>
+<br><br>  
+<div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('all');">
+  <input type="radio" id="AllList" name="filter" checked>
+  <label for="AllList">All List </label>(<div id='count_all' class='inline'></div>)<br>
+</div>      
+    </td>    
+  </tr>
+</table>
+
+<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Prev_Core_Value();'>Prev</a> 
+<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Next_Core_Value();'>Next</a>
+<br><br>   
+<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Undo();'>Undo</a>
+<br><br>   
+<a href="mailto:vpelss@gmail.com?subject=ghfgdf&body=ghfhfh\njfghfgh" target="_blank"> mail </a>
+  
+<pre> 
+value: definition : color
+
+-from list choose yes , no , maybe
+-from maybe list, choose yes or no
+-from yes list loop and remove until at 10
+-then sort
+-then take top 3
+
+-undo up to 10 steps? OR change NO , MAYBE list option. go back one and show filtered based on last value!
+-capability to email?
+-save to cookie so we can come back exactly at step we left on with data intact?
+-add your own core values, or overide list. load / edit / save list
+
+</pre>
+  
+<script>
+var count = {}; //eg: count.yes = 50;
+  
+var values_list_text = `
+Love : What is love? : red
+
+Trust : never do this  
+Soup: liquid heat : rose
+`;
+
+var values_list_lines_array = values_list_text.split(/\r?\n/);
+var core_Value_Index = 0;
+  
+//build values_list
+var values_list_array = [];
+for (var line of values_list_lines_array) {
+  if (line.trim() === '') continue; //remove blank lines  
+  var line_array = line.split(':');
+  values_list_array[core_Value_Index] = {};
+  var core_value_word;
+  if (typeof line_array[0] !== 'undefined'){
+    core_value_word = line_array[0].trim(); 
+    values_list_array[core_Value_Index] = {};
+    values_list_array[core_Value_Index].word = core_value_word;
+    values_list_array[core_Value_Index].ynm = 'maybe';
+  }
+  else{
+    console.log('Missing core_value');
+  }
+  var core_value_definition;
+  if (typeof line_array[1] !== 'undefined'){
+    core_value_definition = line_array[1].trim(); 
+    values_list_array[core_Value_Index].definition = core_value_definition;
+   }
+  else{
+    console.log('Missing  core_value_definition for ' + core_value_word);
+   }
+  var core_value_color;
+  if (typeof line_array[2] !== 'undefined'){
+    core_value_color = line_array[2].trim(); 
+    values_list_array[core_Value_Index].color = core_value_color;
+   }
+  else{
+    console.log('Missing core_value_color for ' + core_value_word);
+  } 
+core_Value_Index++;
+} 
+
+//------------------------------------------------------
+//start here
+values_list_array_filter = 'all';
+function Set_New_Filter(filter){
+values_list_array_filter = filter;
+Next_Core_Value();
+}
+  
+function Count_Core_Values(){
+  count = {};
+  count.yes = 0;
+  count.no = 0;
+  count.maybe = 0;
+  count.all = 0;
+  for (var index in values_list_array){
+    var ynm = values_list_array[index].ynm;
+    //if ( isNaN(count[ynm]) ) {count[ynm] = 0}; //must ensure object is a number
+    count[ynm] = 1 + count[ynm];
+    count['all']++;
+  }
+  $('#count_yes').html( count.yes );
+  $('#count_no').html( count.no );
+  $('#count_maybe').html( count.maybe );
+  $('#count_all').html( count.all );  
+}
+  
+function Next_Core_Value(){ 
+  if (count[values_list_array_filter] > 0){ //only if there is something to find
+   do{
+    values_list_array.push( values_list_array.shift() );
+   }while( (values_list_array[0].ynm !== values_list_array_filter) && (values_list_array_filter !== 'all') );
+  Display_Core_Value();
+  }
+ else{
+     Erase_Core_Value();
+     alert('No Core Values listed as ' + values_list_array_filter);
+ }
+}
+  
+function Prev_Core_Value(){ 
+  if (count[values_list_array_filter] > 0){ //only if there is something to find
+   do{
+    values_list_array.unshift( values_list_array.pop() );
+   }while( (values_list_array[0].ynm !== values_list_array_filter) && (values_list_array_filter !== 'all') );
+  Display_Core_Value();
+  }
+ else{
+     Erase_Core_Value();
+     alert('No Core Values listed as ' + values_list_array_filter);
+ }
+}
+  
+function Set_Core_Value(ynm){
+  values_list_array[0].ynm = ynm;
+  Count_Core_Values();
+  Next_Core_Value();
+}
+ 
+function Display_Core_Value(){
+$('#core_value_word').html( values_list_array[0].word );
+$('#core_value_definition').html( values_list_array[0].definition );
+$('#core_value_ynm').html( values_list_array[0].ynm );
+} 
+  
+function Erase_Core_Value(){
+$('#core_value_word').html( '' );
+$('#core_value_definition').html( '' );
+$('#core_value_ynm').html( '' );
+} 
+ 
+function Undo(){
+  values_list_array.unshift( values_list_array.pop() );
+  Display_Core_Value();
+}
+  
+Display_Core_Value();  
+Count_Core_Values();
+  
+//console.log(values_list_array);
+</script>yurts
+  </body>
+</html>
