@@ -12,50 +12,60 @@
  .inline{
  display: inline-block;  
  }
+ .border{
+ border: solid;
+ border-width : 1px;
+ }
+    
   </style>
 </head>
 <body>
-
+<h4>Core Values Exercise</h4>
 <table>
   <tr>
-    <td>
+    <td width='65%'>
+<a class="ui-button ui-widget ui-corner-all" onclick="Definition();">Definition</a>     
+<br><br>  
 <div class='inline'>Core Value:</div><div id='core_value_word' class='inline'>Core Value</div> 
 <br>
-<div class='inline'>Definition:</div> <div id='core_value_definition' class='inline'>Definition</div> 
-<br>
-<div class='inline'>Status:</div> <div id='core_value_ynm' class='inline'>Maybe</div> 
+<div class='inline'>Choice:</div> <div id='core_value_ynm' class='inline'>Maybe</div> 
 <br><br>
+      
+<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Prev_Core_Value();'><< Prev</a> 
+<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Next_Core_Value();'>Next >></a>
+<br><br>
+      
 <a class="ui-button ui-widget ui-corner-all" onclick="Set_Core_Value('yes');">Yes</a> 
 <a class="ui-button ui-widget ui-corner-all" onclick="Set_Core_Value('no');">No</a> 
 <a class="ui-button ui-widget ui-corner-all" onclick="Set_Core_Value('maybe');">Maybe</a>
     </td>
     <td>
+      <div>Show Choices for:</div>
+      <br>
 <div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('yes');">
   <input type="radio" id="YesList" name="filter">
-  <label for="YesList">Yes List </label>(<div id='count_yes' class='inline'></div>)<br>
+  <label for="YesList">Yes</label>(<div id='count_yes' class='inline'></div>)
 </div>
 <br><br>  
 <div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('no');">
   <input type="radio" id="NoList" name="filter">
-  <label for="NoList">No List </label>(<div id='count_no' class='inline'></div>)<br>
+  <label for="NoList">No</label>(<div id='count_no' class='inline'></div>)
 </div>
 <br><br> 
 <div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('maybe');">
   <input type="radio" id="MaybeList" name="filter">
-  <label for="MaybeList">Maybe List </label>(<div id='count_maybe' class='inline'></div>)<br>
-</div>
+  <label for="MaybeList">Maybe</label>(<div id='count_maybe' class='inline'></div>)
+</div>      
 <br><br>  
 <div  class="ui-button ui-widget ui-corner-all" onclick="Set_New_Filter('all');">
   <input type="radio" id="AllList" name="filter" checked>
-  <label for="AllList">All List </label>(<div id='count_all' class='inline'></div>)<br>
+  <label for="AllList">All</label>(<div id='count_all' class='inline'></div>)<br>
 </div>      
     </td>    
   </tr>
 </table>
-
-<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Prev_Core_Value();'><< Prev</a> 
-<a class="ui-button ui-widget ui-corner-all" href="#" onclick='Next_Core_Value();'>Next >></a>
-<br><br>   
+<br>
+   
 <a class="ui-button ui-widget ui-corner-all" href="#" onclick='Undo();'>Undo</a>
 <br><br> 
   
@@ -65,38 +75,19 @@
 <form>
  <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title='You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
   <br>
-  <input type='button' value='Get Alias List' onclick="GetAliasList()">
-  <input type='button' value='Save Alias List' onclick="SaveAliasList()">
-  <input type='button' value='Reset Alias List' onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
+  <input type='button' value='Edit Core Value List' onclick="GetAliasList()">
+  <input type='button' value='Save Core Value List' onclick="SaveAliasList()">
+  <input type='button' value='Reset Core Value List' onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
 </form>
   
  <br><br>  
 <a href="mailto:vpelss@gmail.com?subject=ghfgdf&body=ghfhfh\njfghfgh" target="_blank"> mail </a>
-<pre> 
-value: definition : color
-
--from list choose yes , no , maybe
--from maybe list, choose yes or no
--from yes list loop and remove until at 10
--then sort
--then take top 3
-
--undo up to 10 steps? OR change NO , MAYBE list option. go back one and show filtered based on last value!
--capability to email?
--save to cookie so we can come back exactly at step we left on with data intact?
--add your own core values, or overide list. load / edit / save list
-
-</pre>
   
 <script>
 var values_list_array = [];
 var count = {}; //eg: count.yes = 50;
   
 var values_list_text = `
-Love : What is love? : red
-
-Trust : never do this  
-Soup: liquid heat : rose
 Acceptance
 Accomplishment
 Accountability
@@ -326,28 +317,14 @@ Wonder
 function Build_values_list( text ){
 for(var line of text.split(/\r?\n/)){ //for each line
   if (line.trim() === '') {continue}; //remove blank lines
-  var line_array = line.split(':');
-  var definition = '';
-  var colour = '';
-  if (typeof line_array[0] !== 'undefined'){
-       if (typeof line_array[1] !== 'undefined'){
-         definition = line_array[1].trim();
-       }
-       if (typeof line_array[2] !== 'undefined'){
-         colour = line_array[2].trim();
-       }
-      values_list_array.push( {'word':line_array[0].trim() , 'definition':definition , 'colour':colour , 'ynm':'maybe' } );
-   }
-   else{
-       console.log('Missing core_value');
-   }
+  values_list_array.push( {'word':line , 'ynm':'maybe' } );
   }
 } 
 
 function Build_values_text( values_list_array ){
   var text = '';
   for(var value of values_list_array){ //for each value
-    var line = '' + value.word + ':' + value.definition + ':' + value.colour + '\r\n';
+    var line = '' + value.word + '\r\n';
     text = text + line;
   }
   return text;
@@ -417,13 +394,11 @@ function Set_Core_Value(ynm){
  
 function Display_Core_Value(){
 $('#core_value_word').html( values_list_array[0].word );
-$('#core_value_definition').html( values_list_array[0].definition );
 $('#core_value_ynm').html( values_list_array[0].ynm );
 } 
   
 function Erase_Core_Value(){
 $('#core_value_word').html( '' );
-$('#core_value_definition').html( '' );
 $('#core_value_ynm').html( '' );
 } 
  
@@ -483,6 +458,10 @@ function Reset_Choices(){
   Display_Core_Value();  
   Count_Core_Values();
   VarToCookie();
+}
+  
+function Definition(){
+   window.open("https://www.google.com/search?q=definition+" + values_list_array[0].word);
 }
  
 CookieToVar();
