@@ -5,17 +5,24 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  
   <title>Core Values</title>
   
+<style>
+.inline{
+ display: inline-block;  
+ }
+ .border{
+ border: solid;
+ border-width : 1px;
+ }
+</style>
+
+  
   
   
   
 
-  
-
-<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+</head>
 
 <body translate="no" >
   <html> 
@@ -27,16 +34,6 @@
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <style>
- .inline{
- display: inline-block;  
- }
- .border{
- border: solid;
- border-width : 1px;
- }
-    
-  </style>
 </head>
 <body>
 <h4>Core Values Exercise</h4>
@@ -46,17 +43,30 @@
 
 <div class='inline'>Is this a Core Value:</div><a id='core_value_word' class='inline' href='#' onclick="Definition();">Core Value</a> 
 <br>
+<input type='button' value='Yes' onclick="Set_Core_Value('yes');">
+<input type='button' value='No' onclick="Set_Core_Value('no');">
+<input type='button' value='Maybe' onclick="Set_Core_Value('maybe');">
+      <!--
 <a href='#' onclick="Set_Core_Value('yes');">Yes</a> &nbsp;
 <a href='#' onclick="Set_Core_Value('no');">No</a>  &nbsp;
 <a href='#' onclick="Set_Core_Value('maybe');">Maybe</a> &nbsp;
-<br>   
+-->
+      <br>   
 <div class='inline'>Current choice:</div> <div id='core_value_ynm' class='inline'>Maybe</div> 
 <br> 
+<input type='button' value='<< Prev' onclick="Prev_Core_Value();">
+<input type='button' value='Next >>' onclick="Next_Core_Value();">
+<!--
 <a href="#" onclick='Prev_Core_Value();'><< Prev</a> &nbsp;
 <a href="#" onclick='Next_Core_Value();'>Next >></a>
+-->
+<!--      
 <br>  
+      
+<input type='button' value='Undo last choice' onclick="Prev_Core_Value();">
+      
 <a href="#" onclick='Undo();'>Undo last choice</a>
-
+-->
 </td>
     
  <td class='border'>    
@@ -68,7 +78,7 @@
 </div>
  
 <div onclick="Set_New_Filter('no');">
-  <input type="radio" id="NoList" name="filter">
+  <input type="radio" id="NoList" name="filter" class=''>
   <label for="NoList">No</label>(<div id='count_no' class='inline'></div>)
 </div>
 
@@ -84,8 +94,8 @@
     </td>    
   </tr>
 </table>
-  
-<a href="#" onclick='Reset_Choices();'>Reset All Choices to Maybe</a>
+<input type='button' value='Reset All Choices to Maybe' onclick="Reset_Choices();">  
+<!-- <a href="#" onclick='Reset_Choices();'>Reset All Choices to Maybe</a> -->
 <br><br> 
   
 <form>
@@ -97,9 +107,13 @@
 </form>
   
  <br><br>  
-<a href="/cdn-cgi/l/email-protection#027472676e717142656f636b6e2c616d6f3d717760686761763f656a6465666424606d667b3f656a646a646a5e6c6864656a64656a" target="_blank"> mail </a>
+<a href="/cdn-cgi/l/email-protection#d1a7a1b4bda2a291b6bcb0b8bdffb2bebceea2a4b3bbb4b2a5ecb6b9b7b6b5b7f7b3beb5a8ecb6b9b7b9b7b98dbfbbb7b6b9b7b6b9" target="_blank"> mail </a>
   
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
+  
+  
+      <script id="rendered-js" >
 var values_list_array = [];
 var count = {}; //eg: count.yes = 50;
   
@@ -485,12 +499,8 @@ Display_Core_Value();
 Count_Core_Values();
 
 console.log('');
-</script>a
-  <script type="text/javascript">(function(){window['__CF$cv$params']={r:'61acfece3c910de2',m:'d1947ee7f5defc9b378fb6909db8f2d6989451db-1612196379-1800-ATOvhp//r0xGNnRQTaoUzXLCfRVQR9SgQdjNyD05vuf+nSZnK6IB/kYChzRrtZka5uIs1C0pBAdKZR0qMpoh9qT6UaT8avqCGCbGglzApZJ4oASzldUbIZArPmsDSv8LDMxh+6CqmgIb/N2nqJ/l+aByIxRZtV1RhQujr+khXf3v',s:[0xf36691842f,0xfa1567e1aa],}})();</script></body>
-</html>
-  
-  
-  
+    </script>
+
   
 
 </body>
