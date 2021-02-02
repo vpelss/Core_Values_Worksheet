@@ -5,6 +5,7 @@
 
 <head>
 
+ 
   <title>Core Values</title>
   
   
@@ -14,10 +15,15 @@
 .inline{
  display: inline-block;  
  }
+
  .border{
  border: solid;
  border-width : 1px;
  }
+    
+td{
+ padding: 5px;
+}
 </style>
 
   
@@ -45,7 +51,7 @@
     <td class='border'>
 
 <div class='inline'>Is this a Core Value:</div><a id='core_value_word' class='inline' href='#' onclick="Definition();">Core Value</a> 
-<br>
+<p></p>
 <input type='button' value='Yes' onclick="Set_Core_Value('yes');">
 <input type='button' value='No' onclick="Set_Core_Value('no');">
 <input type='button' value='Maybe' onclick="Set_Core_Value('maybe');">
@@ -54,9 +60,9 @@
 <a href='#' onclick="Set_Core_Value('no');">No</a>  &nbsp;
 <a href='#' onclick="Set_Core_Value('maybe');">Maybe</a> &nbsp;
 -->
-      <br>   
+<p></p>  
 <div class='inline'>Current choice:</div> <div id='core_value_ynm' class='inline'>Maybe</div> 
-<br> 
+<p></p>
 <input type='button' value='<< Prev' onclick="Prev_Core_Value();">
 <input type='button' value='Next >>' onclick="Next_Core_Value();">
 <!--
@@ -77,40 +83,46 @@
  
 <div onclick="Set_New_Filter('yes');">
   <input type="radio" id="YesList" name="filter">
-  <label for="YesList">Yes</label>(<div id='count_yes' class='inline'></div>)
+  <label for="YesList">Yes</label> (<div id='count_yes' class='inline'></div>)
 </div>
  
 <div onclick="Set_New_Filter('no');">
   <input type="radio" id="NoList" name="filter" >
-  <label for="NoList">No</label>(<div id='count_no' class='inline'></div>)
+  <label for="NoList">No</label> (<div id='count_no' class='inline'></div>)
 </div>
 
 <div  onclick="Set_New_Filter('maybe');">
   <input type="radio" id="MaybeList" name="filter">
-  <label for="MaybeList">Maybe</label>(<div id='count_maybe' class='inline'></div>)
+  <label for="MaybeList">Maybe</label> (<div id='count_maybe' class='inline'></div>)
 </div>      
  
 <div onclick="Set_New_Filter('all');">
   <input type="radio" id="AllList" name="filter" checked>
-  <label for="AllList">All</label>(<div id='count_all' class='inline'></div>)<br>
+  <label for="AllList">All</label> (<div id='count_all' class='inline'></div>)<br>
 </div>      
     </td>    
   </tr>
 </table>
+
+<p></p>
 <input type='button' value='Reset All Choices to Maybe' onclick="Reset_Choices();">  
 <!-- <a href="#" onclick='Reset_Choices();'>Reset All Choices to Maybe</a> -->
-<br><br> 
+
+  <p></p>
+   <a id='IdEmail' href="/cdn-cgi/l/email-protection#89f0e6fcfbc9ece4e8e0e5a7eae6e4b6fafcebe3eceafdb4d0e6fcfba9cae6fbeca9dfe8e5fcecfaafebe6edf0b4eee1efe1efe1acb9edacb9e8e3efeee1efeee1" onmouseover="SetEmailLink();" target="_blank">
+   <input type='button' value='Email your Core Values'>
+   </a>
   
+ <p></p>
+ ------------------------------ 
+<p>Values List Editor</p>
 <form>
  <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title='You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
-  <br>
+</form>
+  <p></p>
   <input type='button' value='Edit Core Value List' onclick="GetAliasList()">
   <input type='button' value='Save Core Value List' onclick="SaveAliasList()">
   <input type='button' value='Reset Core Value List' onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
-</form>
-  
- <br><br>  
-<a id='IdEmail' href="/cdn-cgi/l/email-protection#3a43554f487a5f575b53561459555705494f58505f594e0763554f481a7955485f1a6c5b564f5f491c58555e43075d525c525c521f0a5e1f0a5b505c5d525c5d52" onmouseover="SetEmailLink();" target="_blank" class='ui-button ui-widget ui-corner-all'>Email your Core Values</a>
   
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
