@@ -7,6 +7,9 @@
 
   <title>Core Values</title>
   
+  
+  
+  
 <style>
 .inline{
  display: inline-block;  
@@ -78,7 +81,7 @@
 </div>
  
 <div onclick="Set_New_Filter('no');">
-  <input type="radio" id="NoList" name="filter" class=''>
+  <input type="radio" id="NoList" name="filter" >
   <label for="NoList">No</label>(<div id='count_no' class='inline'></div>)
 </div>
 
@@ -107,7 +110,7 @@
 </form>
   
  <br><br>  
-<a href="/cdn-cgi/l/email-protection#d1a7a1b4bda2a291b6bcb0b8bdffb2bebceea2a4b3bbb4b2a5ecb6b9b7b6b5b7f7b3beb5a8ecb6b9b7b9b7b98dbfbbb7b6b9b7b6b9" target="_blank"> mail </a>
+<a id='IdEmail' href="/cdn-cgi/l/email-protection#3a43554f487a5f575b53561459555705494f58505f594e0763554f481a7955485f1a6c5b564f5f491c58555e43075d525c525c521f0a5e1f0a5b505c5d525c5d52" onmouseover="SetEmailLink();" target="_blank" class='ui-button ui-widget ui-corner-all'>Email your Core Values</a>
   
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
@@ -362,7 +365,8 @@ function Build_values_text( values_list_array ){
   
 Build_values_list( values_list_text );
   
-values_list_array_filter = 'all';
+var values_list_array_filter = 'all';
+
 function Set_New_Filter(filter){
   values_list_array_filter = filter;
   if( values_list_array[0].ynm === filter ){
@@ -493,7 +497,22 @@ function Reset_Choices(){
 function Definition(){
    window.open("https://www.google.com/search?q=definition+" + values_list_array[0].word);
 }
- 
+
+function SetEmailLink(){
+let yes_string = '';
+//get array of core values
+ if (count['yes'] > 0){ //only if there is something to find
+  for(var i = 0 ; i < values_list_array.length ; i++){
+   if(values_list_array[i].ynm == 'yes'){
+    yes_string = yes_string  + values_list_array[i].word + '%0d%0a';   
+   }
+  }
+ }
+
+let href_string = "mailto:?subject=Your Core Values&body=" + yes_string; 
+$('#IdEmail').attr("href", href_string);
+}
+
 CookieToVar();
 Display_Core_Value();  
 Count_Core_Values();
