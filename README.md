@@ -3,6 +3,9 @@ Forget paper and pen.
 
 Do a Core Values Exercise using this web page.
 
-See it at:
+Try it:
+
+https://vpelss.github.io/Core_Values_Worksheet/
+
 https://www.emogic.com/CoreValues/
 
