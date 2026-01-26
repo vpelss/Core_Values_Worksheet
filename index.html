@@ -40,7 +40,9 @@ div , span {
 </head>
 
 <body>
-  <div><h4>Core Values Exercise</h4></div>
+  <div>
+  <h4>Core Values Exercise</h4>
+</div>
 
 <div>
   <span class="inline border">
@@ -53,18 +55,18 @@ div , span {
     <div class="inline">Current choice:</div>
     <div id="core_value_ynm" class="inline">Maybe</div>
     <p></p>
-    <input type='button' value='<< Prev' onclick="Prev_Core_Value();">
-    <input type='button' value='Next >>' onclick="Next_Core_Value();">
+    <input type="button" value="<< Prev" onclick="Prev_Core_Value();">
+    <input type="button" value="Next >>" onclick="Next_Core_Value();">
   </span>
   <span class="inline">
     <div>Filter / Just show:</div>
     <div onclick="Set_New_Filter('yes');">
       <input type="radio" id="YesList" name="filter">
-      <label for="YesList">Yes</label> (<div id='count_yes' class='inline'></div>)
+      <label for="YesList">Yes</label> (<div id="count_yes" class="inline"></div>)
     </div>
     <div onclick="Set_New_Filter('no');">
       <input type="radio" id="NoList" name="filter">
-      <label for="NoList">No</label> (<div id='count_no' class='inline'></div>)
+      <label for="NoList">No</label> (<div id="count_no" class="inline"></div>)
     </div>
     <div onclick="Set_New_Filter('maybe');">
       <input type="radio" id="MaybeList" name="filter">
@@ -72,44 +74,42 @@ div , span {
     </div>
     <div onclick="Set_New_Filter('all');">
       <input type="radio" id="AllList" name="filter" checked>
-      <label for="AllList">All</label> (<div id='count_all' class='inline'></div>)
+      <label for="AllList">All</label> (<div id="count_all" class="inline"></div>)
     </div>
   </span>
 </div>
 
-<p></p>
-
 <div>
-  <input type='button' value='Copy filtered list to clipboard' onclick="">
+  <input type="button" value="Copy filtered list to clipboard" onclick="">
 </div>
 
-<p></p>
-<input type='button' value='Reset All Choices to Maybe' onclick="Reset_Choices();">
-<!-- <a href="#" onclick='Reset_Choices();'>Reset All Choices to Maybe</a> -->
+<div>
+  <input type="button" value="Reset All Choices to Maybe" onclick="Reset_Choices();">
+</div>
 
-<p></p>
-<a id='IdEmail' href="mailto:your@email.com?subject=Your Core Values&body=ghfhfh%0d%0ajfghfgh" onmouseover="SetEmailLink();" target="_blank">
-  <input type='button' value='Email your Core Values'>
-</a>
+<div>
+  <a id="IdEmail" href="mailto:your@email.com?subject=Your Core Values&body=ghfhfh%0d%0ajfghfgh" onmouseover="SetEmailLink();" target="_blank">
+    <input type="button" value="Email your Core Values">
+  </a>
+</div>
 
 <p></p>
 
 <p>Values List Editor</p>
 <form>
-  <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title='You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
+  <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title="You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup."></textarea>
 </form>
-<p></p>
-<input type='button' value='Edit Core Value List' onclick="GetAliasList()">
-<input type='button' value='Save Core Value List' onclick="SaveAliasList()">
-<input type='button' value='Reset Core Value List' onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
+<input type="button" value="Edit Core Value List" onclick="GetAliasList()">
+<input type="button" value="Save Core Value List" onclick="SaveAliasList()">
+<input type="button" value="Reset Core Value List" onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
 
-<p>
+<div>
   <a href="https://github.com/vpelss/Core_Values_Worksheet" target="_blank" rel="noopener">https://github.com/vpelss/Core_Values_Worksheet</a>
-</p>
+</div>
 
-<p>
+<div>
   <a href="https://www.emogic.com" target="_blank" rel="noopener">Emogic</a>
-</p>
+</div>
   
     <script id="rendered-js" >
 var values_list_array = [];
