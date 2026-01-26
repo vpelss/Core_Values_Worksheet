@@ -114,8 +114,12 @@ div , span {
 
 <div  >
   </div>
+
+<div hidden>
 <textarea id="clipboard_div">
-</textarea>
+  sdfdsfsdfsdf
+  </textarea>
+  </div>
   
     <script id="rendered-js" >
 var values_list_array = [];
@@ -538,8 +542,9 @@ function FilteredValuesToText(values_list_array_filter){
   if (count[values_list_array_filter] > 0) {
     //only if there is something to find
     for (var i = 0; i < values_list_array.length; i++) {
-      if (values_list_array[i].ynm == values_list_array_filter) {
-        filteredValuesText = filteredValuesText + values_list_array[i].word + "%0d%0a";
+      if ((values_list_array_filter == "all") || (values_list_array[i].ynm == values_list_array_filter)) {
+        filteredValuesText = filteredValuesText + values_list_array[i].word + "\r\n";
+          //"%0d%0a";
       }
     }
   }
@@ -555,10 +560,12 @@ function SetEmailLink() {
 function CopyFilteredListToClipboard(){
   let filteredValuesText = FilteredValuesToText(values_list_array_filter);
   let el = document.getElementById("clipboard_div");
-  el.innerHTML = filteredValuesText;
-  el.select();
-  writeClipboardText(filteredValuesText);
+el.innerHTML = filteredValuesText;
+  el.value = filteredValuesText;
+  //el.select();
+  //writeClipboardText(filteredValuesText);
   //navigator.clipboard.writeText(el.value);
+  CopyToClipboard("clipboard_div")
   alert("Filtered list copied to the clipboard.");
   //CopyToClipboard(id);
 }
@@ -567,18 +574,13 @@ function CopyToClipboard(id) {
   //alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
   let t = document.getElementById(id);
   //let t = this;
+  t.focus();
   t.select();
   document.execCommand(
     "copy",
     false,
     null
   ); /* Copy the text inside the text field */
-
-  if (document.getElementById("clear_timer").checked) {
-    start_timers();
-  } else {
-    clear_dialog();
-  }
 }
 
 async function writeClipboardText(text) {
