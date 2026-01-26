@@ -1,15 +1,22 @@
 
-
 <!DOCTYPE html>
 <html lang="en" >
 
 <head>
+  <meta charset="UTF-8">
+  
+  
+  
 
- 
   <title>Core Values</title>
+
+    <link rel="canonical" href="https://codepen.io/vpelss/pen/poyxMBL">
+    <meta name="description" content="Core Values Excercise">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Core Values Excercise</title>
   
-  
-  
+  <link rel='stylesheet' href='https://cdn.simplecss.org/simple.css'>
   
 <style>
 .inline{
@@ -21,117 +28,93 @@
  border-width : 1px;
  }
     
-td{
- padding: 5px;
+div , span {
+  padding: 5pt;
+  margin: auto;
 }
 </style>
 
   
   
   
-  
-
 </head>
 
-<body translate="no" >
-  <html> 
-<head>
-<meta name="description" content="Core Values Excercise">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Core Values Excercise</title>
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
 <body>
-<h4>Core Values Exercise</h4>
-<table>
-  <tr>
-    <td class='border'>
+  <div><h4>Core Values Exercise</h4></div>
 
-<div class='inline'>Is this a Core Value:</div><a id='core_value_word' class='inline' href='#' onclick="Definition();">Core Value</a> 
-<p></p>
-<input type='button' value='Yes' onclick="Set_Core_Value('yes');">
-<input type='button' value='No' onclick="Set_Core_Value('no');">
-<input type='button' value='Maybe' onclick="Set_Core_Value('maybe');">
-      <!--
-<a href='#' onclick="Set_Core_Value('yes');">Yes</a> &nbsp;
-<a href='#' onclick="Set_Core_Value('no');">No</a>  &nbsp;
-<a href='#' onclick="Set_Core_Value('maybe');">Maybe</a> &nbsp;
--->
-<p></p>  
-<div class='inline'>Current choice:</div> <div id='core_value_ynm' class='inline'>Maybe</div> 
-<p></p>
-<input type='button' value='<< Prev' onclick="Prev_Core_Value();">
-<input type='button' value='Next >>' onclick="Next_Core_Value();">
-<!--
-<a href="#" onclick='Prev_Core_Value();'><< Prev</a> &nbsp;
-<a href="#" onclick='Next_Core_Value();'>Next >></a>
--->
-<!--      
-<br>  
-      
-<input type='button' value='Undo last choice' onclick="Prev_Core_Value();">
-      
-<a href="#" onclick='Undo();'>Undo last choice</a>
--->
-</td>
-    
- <td class='border'>    
- <div>Just show:</div>
- 
-<div onclick="Set_New_Filter('yes');">
-  <input type="radio" id="YesList" name="filter">
-  <label for="YesList">Yes</label> (<div id='count_yes' class='inline'></div>)
-</div>
- 
-<div onclick="Set_New_Filter('no');">
-  <input type="radio" id="NoList" name="filter" >
-  <label for="NoList">No</label> (<div id='count_no' class='inline'></div>)
+<div>
+  <span class="inline border">
+    <div>Is this a Core Value:</div> <a id="core_value_word" class="inline" href="#" onclick="Definition();">Core Value</a>
+    <p></p>
+    <input type="button" value="Yes" onclick="Set_Core_Value('yes');">
+    <input type="button" value="No" onclick="Set_Core_Value('no');">
+    <input type="button" value="Maybe" onclick="Set_Core_Value('maybe');">
+    <p></p>
+    <div class="inline">Current choice:</div>
+    <div id="core_value_ynm" class="inline">Maybe</div>
+    <p></p>
+    <input type='button' value='<< Prev' onclick="Prev_Core_Value();">
+    <input type='button' value='Next >>' onclick="Next_Core_Value();">
+  </span>
+  <span class="inline">
+    <div>Filter / Just show:</div>
+    <div onclick="Set_New_Filter('yes');">
+      <input type="radio" id="YesList" name="filter">
+      <label for="YesList">Yes</label> (<div id='count_yes' class='inline'></div>)
+    </div>
+    <div onclick="Set_New_Filter('no');">
+      <input type="radio" id="NoList" name="filter">
+      <label for="NoList">No</label> (<div id='count_no' class='inline'></div>)
+    </div>
+    <div onclick="Set_New_Filter('maybe');">
+      <input type="radio" id="MaybeList" name="filter">
+      <label for="MaybeList">Maybe</label> (<div id="count_maybe" class="inline"></div>)
+    </div>
+    <div onclick="Set_New_Filter('all');">
+      <input type="radio" id="AllList" name="filter" checked>
+      <label for="AllList">All</label> (<div id='count_all' class='inline'></div>)
+    </div>
+  </span>
 </div>
 
-<div  onclick="Set_New_Filter('maybe');">
-  <input type="radio" id="MaybeList" name="filter">
-  <label for="MaybeList">Maybe</label> (<div id='count_maybe' class='inline'></div>)
-</div>      
- 
-<div onclick="Set_New_Filter('all');">
-  <input type="radio" id="AllList" name="filter" checked>
-  <label for="AllList">All</label> (<div id='count_all' class='inline'></div>)<br>
-</div>      
-    </td>    
-  </tr>
-</table>
+<p></p>
+
+<div>
+  <input type='button' value='Copy filtered list to clipboard' onclick="">
+</div>
 
 <p></p>
-<input type='button' value='Reset All Choices to Maybe' onclick="Reset_Choices();">  
+<input type='button' value='Reset All Choices to Maybe' onclick="Reset_Choices();">
 <!-- <a href="#" onclick='Reset_Choices();'>Reset All Choices to Maybe</a> -->
 
-  <p></p>
-   <a id='IdEmail' href="/cdn-cgi/l/email-protection#89f0e6fcfbc9ece4e8e0e5a7eae6e4b6fafcebe3eceafdb4d0e6fcfba9cae6fbeca9dfe8e5fcecfaafebe6edf0b4eee1efe1efe1acb9edacb9e8e3efeee1efeee1" onmouseover="SetEmailLink();" target="_blank">
-   <input type='button' value='Email your Core Values'>
-   </a>
-  
- <p></p>
- ------------------------------ 
+<p></p>
+<a id='IdEmail' href="mailto:your@email.com?subject=Your Core Values&body=ghfhfh%0d%0ajfghfgh" onmouseover="SetEmailLink();" target="_blank">
+  <input type='button' value='Email your Core Values'>
+</a>
+
+<p></p>
+
 <p>Values List Editor</p>
 <form>
- <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title='You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
+  <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title='You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
 </form>
-  <p></p>
-  <input type='button' value='Edit Core Value List' onclick="GetAliasList()">
-  <input type='button' value='Save Core Value List' onclick="SaveAliasList()">
-  <input type='button' value='Reset Core Value List' onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
+<p></p>
+<input type='button' value='Edit Core Value List' onclick="GetAliasList()">
+<input type='button' value='Save Core Value List' onclick="SaveAliasList()">
+<input type='button' value='Reset Core Value List' onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
+
+<p>
+  <a href="https://github.com/vpelss/Core_Values_Worksheet" target="_blank" rel="noopener">https://github.com/vpelss/Core_Values_Worksheet</a>
+</p>
+
+<p>
+  <a href="https://www.emogic.com" target="_blank" rel="noopener">Emogic</a>
+</p>
   
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
-</html>
-  
-  
-      <script id="rendered-js" >
+    <script id="rendered-js" >
 var values_list_array = [];
 var count = {}; //eg: count.yes = 50;
-  
+
 var values_list_text = `
 Acceptance
 Accomplishment
@@ -207,7 +190,6 @@ Equality
 Ethical
 Excellence
 Experience
-
 Exploration
 Expressive
 Fairness
@@ -358,183 +340,218 @@ Winning
 Wisdom
 Wonder
 `;
-   
-function Build_values_list( text ){
-for(var line of text.split(/\r?\n/)){ //for each line
-  if (line.trim() === '') {continue}; //remove blank lines
-  values_list_array.push( {'word':line , 'ynm':'maybe' } );
-  }
-} 
 
-function Build_values_text( values_list_array ){
-  var text = '';
-  for(var value of values_list_array){ //for each value
-    var line = '' + value.word + '\r\n';
+function Build_values_list_array_from_text(text) {
+  for (var line of text.split(/\r?\n/)) {
+    //for each line
+    if (line.trim() === "") {
+      continue;
+    } //remove blank lines
+    values_list_array.push({ word: line, ynm: "maybe" });
+  }
+}
+
+function Build_values_text_from_array(values_list_array) {
+  var text = "";
+  for (var value of values_list_array) {
+    //for each value
+    var line = "" + value.word + "\r\n";
     text = text + line;
   }
   return text;
-} 
-  
-Build_values_list( values_list_text );
-  
-var values_list_array_filter = 'all';
+}
 
-function Set_New_Filter(filter){
+Build_values_list_array_from_text(values_list_text);
+
+var values_list_array_filter = "all";
+function Set_New_Filter(filter) {
   values_list_array_filter = filter;
-  if( values_list_array[0].ynm === filter ){
-    Display_Core_Value(); 
+  if (values_list_array[0].ynm === filter) {
+    Display_Core_Value();
     return;
   } //stay on same Core Value if we are the right type
   Next_Core_Value();
 }
-  
-function Count_Core_Values(){
+
+function Count_Core_Values() {
   count = {};
   count.yes = 0;
   count.no = 0;
   count.maybe = 0;
   count.all = 0;
-  for (var value of values_list_array){
+  for (var value of values_list_array) {
     var ynm = value.ynm;
     count[ynm] = 1 + count[ynm]; //must ensure object is a number
-    count['all']++;
+    count["all"]++;
   }
-  $('#count_yes').html( count.yes );
-  $('#count_no').html( count.no );
-  $('#count_maybe').html( count.maybe );
-  $('#count_all').html( count.all );  
+  document.getElementById("count_yes").innerHTML = count.yes;
+  document.getElementById("count_no").innerHTML = count.no;
+  document.getElementById("count_maybe").innerHTML = count.maybe;
+  document.getElementById("count_all").innerHTML = count.all;
 }
-  
-function Next_Core_Value(){ 
-  if (count[values_list_array_filter] > 0){ //only if there is something to find
-   do{
-    values_list_array.push( values_list_array.shift() );
-   }while( (values_list_array[0].ynm !== values_list_array_filter) && (values_list_array_filter !== 'all') );
-  Display_Core_Value();
+
+function Next_Core_Value() {
+  if (count[values_list_array_filter] > 0) {
+    //only if there is something to find
+    do {
+      values_list_array.push(values_list_array.shift());
+    } while (
+      values_list_array[0].ynm !== values_list_array_filter &&
+      values_list_array_filter !== "all"
+    );
+    Display_Core_Value();
+  } else {
+    Erase_Core_Value();
+    alert("There are no Core Values listed as: " + values_list_array_filter);
   }
- else{
-     Erase_Core_Value();
-     alert('There are no Core Values listed as: ' + values_list_array_filter);
- }
-VarToCookie();
+  VarToCookie();
 }
-  
-function Prev_Core_Value(){ 
-  if (count[values_list_array_filter] > 0){ //only if there is something to find
-   do{
-    values_list_array.unshift( values_list_array.pop() );
-   }while( (values_list_array[0].ynm !== values_list_array_filter) && (values_list_array_filter !== 'all') );
-  Display_Core_Value();
+
+function Prev_Core_Value() {
+  if (count[values_list_array_filter] > 0) {
+    //only if there is something to find
+    do {
+      values_list_array.unshift(values_list_array.pop());
+    } while (
+      values_list_array[0].ynm !== values_list_array_filter &&
+      values_list_array_filter !== "all"
+    );
+    Display_Core_Value();
+  } else {
+    Erase_Core_Value();
+    alert("No Core Values listed as " + values_list_array_filter);
   }
- else{
-     Erase_Core_Value();
-     alert('No Core Values listed as ' + values_list_array_filter);
- }
 }
-  
-function Set_Core_Value(ynm){
+
+function Set_Core_Value(ynm) {
   values_list_array[0].ynm = ynm;
   Count_Core_Values();
   Next_Core_Value();
 }
- 
-function Display_Core_Value(){
-$('#core_value_word').html( values_list_array[0].word );
-$('#core_value_ynm').html( values_list_array[0].ynm );
-} 
-  
-function Erase_Core_Value(){
-$('#core_value_word').html( '' );
-$('#core_value_ynm').html( '' );
-} 
- 
-function Undo(){
-  values_list_array.unshift( values_list_array.pop() );
+
+function Display_Core_Value() {
+  document.getElementById("core_value_word").innerHTML =
+    values_list_array[0].word;
+  document.getElementById("core_value_ynm").innerHTML =
+    values_list_array[0].ynm;
+}
+
+function Erase_Core_Value() {
+  $("#core_value_word").html("");
+  $("#core_value_ynm").html("");
+}
+
+function Undo() {
+  values_list_array.unshift(values_list_array.pop());
   Display_Core_Value();
 }
-  
-function CookieToVar()
-{  
-if( supports_html5_storage() == false ) {return} 
-if( typeof localStorage['Core_Values'] === 'undefined' ) {return } //nothing to restore. use var
-var test = localStorage['Core_Values'];
-values_list_array = JSON.parse( localStorage['Core_Values'] );
-} 
-  
-function VarToCookie(){
-if( supports_html5_storage() == false ) {return} 
-localStorage['Core_Values'] = JSON.stringify( values_list_array );
+
+function CookieToVar() {
+  if (supports_html5_storage() == false) {
+    return;
+  }
+  if (typeof localStorage["Core_Values"] === "undefined") {
+    return;
+  } //nothing to restore. use var
+  var test = localStorage["Core_Values"];
+  values_list_array = JSON.parse(localStorage["Core_Values"]);
 }
-  
-function GetAliasList()
-{
-CookieToVar();
-document.getElementById("JSONSave").value = Build_values_text( values_list_array )
+
+function VarToCookie() {
+  if (supports_html5_storage() == false) {
+    return;
+  }
+  localStorage["Core_Values"] = JSON.stringify(values_list_array);
 }
-  
-function SaveAliasList(){
-  if(false === confirm('This will change your list based on the text you entered. Are you sure?')){return};
-  values_list_array=[];
-  Build_values_list( document.getElementById("JSONSave").value );  
-  VarToCookie();
-  Count_Core_Values();
-  Display_Core_Value();  
+
+function GetAliasList() {
+  CookieToVar();
+  document.getElementById("JSONSave").value = Build_values_text_from_array(
+    values_list_array);
 }
-  
-function ResetAliasList(){
+
+function SaveAliasList() {
+  if (
+    false ===
+    confirm(
+      "This will change your list based on the text you entered. Are you sure?"
+    )
+  ) {
+    return;
+  }
   values_list_array = [];
-  Build_values_list( values_list_text );  
+  Build_values_list_array_from_text(document.getElementById("JSONSave").value);
   VarToCookie();
   Count_Core_Values();
-  Display_Core_Value();   
+  Display_Core_Value();
 }
-  
+
+function ResetAliasList() {
+  values_list_array = [];
+  Build_values_list_array_from_text(values_list_text);
+  VarToCookie();
+  Count_Core_Values();
+  Display_Core_Value();
+}
+
 function supports_html5_storage() {
   try {
-    return 'localStorage' in window && window['localStorage'] !== null;
+    return "localStorage" in window && window["localStorage"] !== null;
   } catch (e) {
     return false;
   }
 }
-  
-function Reset_Choices(){
-  if( false == confirm('This will reset ALL changes to your choices and cannot be undone. (y/n)') ){ return }
-  for(var value of values_list_array){ value.ynm = 'maybe'; }
-  localStorage['Core_Values'] = null;
-  Display_Core_Value();  
+
+function Reset_Choices() {
+  if (
+    false ==
+    confirm(
+      "This will reset ALL changes to your choices and cannot be undone. (y/n)"
+    )
+  ) {
+    return;
+  }
+  for (var value of values_list_array) {
+    value.ynm = "maybe";
+  }
+  localStorage["Core_Values"] = null;
+  Display_Core_Value();
   Count_Core_Values();
   VarToCookie();
 }
-  
-function Definition(){
-   window.open("https://www.google.com/search?q=definition+" + values_list_array[0].word);
+
+function Definition() {
+  window.open(
+    "https://www.google.com/search?q=definition+" + values_list_array[0].word
+  );
 }
 
-function SetEmailLink(){
-let yes_string = '';
-//get array of core values
- if (count['yes'] > 0){ //only if there is something to find
-  for(var i = 0 ; i < values_list_array.length ; i++){
-   if(values_list_array[i].ynm == 'yes'){
-    yes_string = yes_string  + values_list_array[i].word + '%0d%0a';   
-   }
+function FilteredValuesToText(values_list_array_filter){
+   let filteredValuesText = "";
+  //get array of core values
+  if (count[values_list_array_filter] > 0) {
+    //only if there is something to find
+    for (var i = 0; i < values_list_array.length; i++) {
+      if (values_list_array[i].ynm == values_list_array_filter) {
+        filteredValuesText = filteredValuesText + values_list_array[i].word + "%0d%0a";
+      }
+    }
   }
- }
+  return filteredValuesText;
+}
 
-let href_string = "mailto:?subject=Your Core Values&body=" + yes_string; 
-$('#IdEmail').attr("href", href_string);
+function SetEmailLink() {
+  let filteredValuesText = FilteredValuesToText(values_list_array_filter)
+  let href_string = "mailto:?subject=Your Core Values&body=" + filteredValuesText;
+  $("#IdEmail").attr("href", href_string);
 }
 
 CookieToVar();
-Display_Core_Value();  
+Display_Core_Value();
 Count_Core_Values();
-
-console.log('');
-    </script>
+  </script>
 
   
-
 </body>
 
 </html>
- 
