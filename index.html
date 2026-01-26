@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -80,7 +79,7 @@ div , span {
 </div>
 
 <div>
-  <input type="button" value="Copy filtered list to clipboard" onclick="">
+  <input type="button" value="Copy filtered list to clipboard" onclick="CopyFilteredListToClipboard();">
 </div>
 
 <div>
@@ -93,12 +92,14 @@ div , span {
   </a>
 </div>
 
-<p></p>
+<div>Values List Editor</div>
 
-<p>Values List Editor</p>
-<form>
-  <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title="You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup."></textarea>
-</form>
+<div>
+  <form>
+    <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title="You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup."></textarea>
+  </form>
+</div>
+
 <input type="button" value="Edit Core Value List" onclick="GetAliasList()">
 <input type="button" value="Save Core Value List" onclick="SaveAliasList()">
 <input type="button" value="Reset Core Value List" onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
@@ -110,6 +111,11 @@ div , span {
 <div>
   <a href="https://www.emogic.com" target="_blank" rel="noopener">Emogic</a>
 </div>
+
+<div  >
+  </div>
+<textarea id="clipboard_div">
+</textarea>
   
     <script id="rendered-js" >
 var values_list_array = [];
@@ -543,7 +549,44 @@ function FilteredValuesToText(values_list_array_filter){
 function SetEmailLink() {
   let filteredValuesText = FilteredValuesToText(values_list_array_filter)
   let href_string = "mailto:?subject=Your Core Values&body=" + filteredValuesText;
-  $("#IdEmail").attr("href", href_string);
+  document.getElementById("IdEmail").setAttribute("href", href_string);
+}
+
+function CopyFilteredListToClipboard(){
+  let filteredValuesText = FilteredValuesToText(values_list_array_filter);
+  let el = document.getElementById("clipboard_div");
+  el.innerHTML = filteredValuesText;
+  el.select();
+  writeClipboardText(filteredValuesText);
+  //navigator.clipboard.writeText(el.value);
+  alert("Filtered list copied to the clipboard.");
+  //CopyToClipboard(id);
+}
+
+function CopyToClipboard(id) {
+  //alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
+  let t = document.getElementById(id);
+  //let t = this;
+  t.select();
+  document.execCommand(
+    "copy",
+    false,
+    null
+  ); /* Copy the text inside the text field */
+
+  if (document.getElementById("clear_timer").checked) {
+    start_timers();
+  } else {
+    clear_dialog();
+  }
+}
+
+async function writeClipboardText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 CookieToVar();
