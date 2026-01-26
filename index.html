@@ -86,7 +86,7 @@ div , span {
   <input type="button" value="Reset All Choices to Maybe" onclick="Reset_Choices();">
 </div>
 
-<div>
+<div hidden>
   <a id="IdEmail" href="mailto:your@email.com?subject=Your Core Values&body=ghfhfh%0d%0ajfghfgh" onmouseover="SetEmailLink();" target="_blank">
     <input type="button" value="Email your Core Values">
   </a>
@@ -477,7 +477,8 @@ function VarToCookie() {
 function GetAliasList() {
   CookieToVar();
   document.getElementById("JSONSave").value = Build_values_text_from_array(
-    values_list_array);
+    values_list_array
+  );
 }
 
 function SaveAliasList() {
@@ -536,15 +537,18 @@ function Definition() {
   );
 }
 
-function FilteredValuesToText(values_list_array_filter){
-   let filteredValuesText = "";
+function FilteredValuesToText(values_list_array_filter) {
+  let filteredValuesText = "";
   //get array of core values
   if (count[values_list_array_filter] > 0) {
     //only if there is something to find
     for (var i = 0; i < values_list_array.length; i++) {
-      if ((values_list_array_filter == "all") || (values_list_array[i].ynm == values_list_array_filter)) {
-        filteredValuesText = filteredValuesText + values_list_array[i].word + "\r\n";
-          //"%0d%0a";
+      if (
+        values_list_array_filter == "all" ||
+        values_list_array[i].ynm == values_list_array_filter
+      ) {
+        filteredValuesText =
+          filteredValuesText + values_list_array[i].word + "\r\n";
       }
     }
   }
@@ -552,30 +556,24 @@ function FilteredValuesToText(values_list_array_filter){
 }
 
 function SetEmailLink() {
-  let filteredValuesText = FilteredValuesToText(values_list_array_filter)
-  let href_string = "mailto:?subject=Your Core Values&body=" + filteredValuesText;
+  let filteredValuesText = FilteredValuesToText(values_list_array_filter);
+  let href_string =
+    "mailto:?subject=Your Core Values&body=" + filteredValuesText;
   document.getElementById("IdEmail").setAttribute("href", href_string);
 }
 
-function CopyFilteredListToClipboard(){
+function CopyFilteredListToClipboard() {
   let filteredValuesText = FilteredValuesToText(values_list_array_filter);
-  let el = document.getElementById("clipboard_div");
-el.innerHTML = filteredValuesText;
-  el.value = filteredValuesText;
-  //el.select();
-  //writeClipboardText(filteredValuesText);
-  //navigator.clipboard.writeText(el.value);
-  CopyToClipboard("clipboard_div")
+  CopyToClipboard(filteredValuesText);
   alert("Filtered list copied to the clipboard.");
-  //CopyToClipboard(id);
 }
 
-function CopyToClipboard(id) {
-  //alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
-  let t = document.getElementById(id);
-  //let t = this;
-  t.focus();
-  t.select();
+function CopyToClipboard(filteredValuesText) {
+  let el = document.getElementById("clipboard_div");
+  el.innerHTML = filteredValuesText;
+  el.value = filteredValuesText;
+  el.focus();
+  el.select();
   document.execCommand(
     "copy",
     false,
@@ -583,6 +581,7 @@ function CopyToClipboard(id) {
   ); /* Copy the text inside the text field */
 }
 
+//only works in secure context
 async function writeClipboardText(text) {
   try {
     await navigator.clipboard.writeText(text);
