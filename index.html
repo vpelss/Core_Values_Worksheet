@@ -99,10 +99,15 @@ div , span {
     <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup/Modify Core Value  List. Save the text generated in a safe location." title="You can import/export your current Core Value list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup."></textarea>
   </form>
 </div>
-
-<input type="button" value="Edit Core Value List" onclick="GetAliasList()">
-<input type="button" value="Save Core Value List" onclick="SaveAliasList()">
-<input type="button" value="Reset Core Value List" onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
+<div>
+  <input type="button" value="Edit Core Value List" onclick="GetAliasList()">
+</div>
+<div>
+  <input type="button" value="Save Core Value List" onclick="SaveAliasList()">
+</div>
+<div>
+  <input type="button" value="Reset Core Value List" onclick="if(confirm('This will reset to Default list. Any words you have added or removed will be reverted. Are you sure?')){ResetAliasList()}">
+</div>
 
 <div>
   <a href="https://github.com/vpelss/Core_Values_Worksheet" target="_blank" rel="noopener">https://github.com/vpelss/Core_Values_Worksheet</a>
